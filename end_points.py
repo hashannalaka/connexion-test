@@ -23,3 +23,7 @@ def put_users(body: dict) -> Response:
     db.session.commit()
     # Return users as JSON
     return jsonify({})
+
+
+def no_db() -> Response:
+    return jsonify({'hi': 'hi'})
