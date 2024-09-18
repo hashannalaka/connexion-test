@@ -2,27 +2,27 @@
 services:
   db:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: mysql_db_connexion
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: flask_db
+      MYSQL_DATABASE: connexion_db
       MYSQL_USER: flaskuser
       MYSQL_PASSWORD: flaskpassword
     ports:
-      - "3306:3306"
+      - "3352:3306"
     volumes:
       - db-data:/var/lib/mysql
   
   test_db:
     image: mysql:8.0
-    container_name: mysql_test_db
+    container_name: mysql_test_db_connexion
     environment:
       MYSQL_ROOT_PASSWORD: testrootpassword
-      MYSQL_DATABASE: flask_test_db
+      MYSQL_DATABASE: connexion_test_db
       MYSQL_USER: testuser
       MYSQL_PASSWORD: testpassword
     ports:
-      - "3307:3306"  # Use a different port for the test database
+      - "3353:3306"  # Use a different port for the test database
     volumes:
       - test-db-data:/var/lib/mysql
 

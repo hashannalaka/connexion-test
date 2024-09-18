@@ -1,15 +1,21 @@
 import connexion
 from connexion import FlaskApp
-from config import Config
+from config import Config, TestConfig
 from models import db
 
 
-def setup_application():
+def setup_application(is_test=False):
     _connexion_app = connexion.App(__name__, specification_dir='interface/')
     _flask_app = _connexion_app.app
 
-    _flask_app.config['SQLALCHEMY_DATABASE_URI'] = Config.SQLALCHEMY_DATABASE_URI
-    _flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = Config.SQLALCHEMY_TRACK_MODIFICATIONS
+    _flask_app.config['SQLALCHEMY_DATABASE_URI'] = (
+        Config.SQLALCHEMY_DATABASE_URI
+        if not is_test
+        else TestConfig.SQLALCHEMY_DATABASE_URI
+    )
+    _flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = (
+        Config.SQLALCHEMY_TRACK_MODIFICATIONS
+    )
 
     _db = db.init_app(_flask_app)
 

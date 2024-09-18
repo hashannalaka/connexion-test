@@ -6,7 +6,9 @@ SQLALCHEMY_POOL_RECYCLE = 14400
 # Maximum execution time for read only select statements in milliseconds.
 MAX_EXECUTION_TIME = 60 * 1000
 SQLALCHEMY_ENGINE_OPTIONS = {
-    'connect_args': {'init_command': f'SET SESSION MAX_EXECUTION_TIME={MAX_EXECUTION_TIME}'},
+    'connect_args': {
+        'init_command': f'SET SESSION MAX_EXECUTION_TIME={MAX_EXECUTION_TIME}'
+    },
     'pool_pre_ping': True,
     'pool_size': SQLALCHEMY_POOL_SIZE,
     'pool_recycle': SQLALCHEMY_POOL_RECYCLE,
