@@ -1,5 +1,6 @@
 import connexion
 from connexion import FlaskApp
+from request_hooks import add_missing_slash
 from config import Config, TestConfig
 from models import db
 
@@ -17,12 +18,17 @@ def setup_application(is_test=False):
         Config.SQLALCHEMY_TRACK_MODIFICATIONS
     )
 
+    _flask_app.before_request(add_missing_slash)
+
     _db = db.init_app(_flask_app)
 
     return _flask_app, _connexion_app
 
 
 def setup_interfaces(connexion_flask_app: 'FlaskApp') -> None:
+
+    connexion_flask_app.app.url_map.strict_slashes = False
+
     connexion_flask_app.add_api(
         'openapi.yml',
         strict_validation=True,

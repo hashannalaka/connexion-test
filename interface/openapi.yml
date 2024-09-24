@@ -42,10 +42,10 @@ paths:
               schema:
                 type: object
 
-  /without_db:
+  /test_endpoint:
     get:
-      summary: Get all users
-      operationId: end_points.without_db
+      summary: Endpoint
+      operationId: end_points.test_endpoint
       responses:
         '200':
-          description: A list of users
+          description: Return test response

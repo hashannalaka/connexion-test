@@ -26,5 +26,5 @@ def put_users(body: dict) -> Response:
     return jsonify(body)
 
 
-def without_db() -> Response:
+def test_endpoint() -> Response:
     return jsonify({'hi': 'hi'})
